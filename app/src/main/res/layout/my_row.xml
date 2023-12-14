@@ -37,49 +37,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="110dp"
-                android:text="05.06.2003"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat"
+                android:text="05.06.2003"
                 android:textColor="#AE1313"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/plant_period_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="210dp"
-                android:layout_marginTop="8dp"
-                android:text="6"
+                android:layout_marginStart="220dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat"
+                android:text="6"
+                android:textColor="@color/green"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.404" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/plant_nextday_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="15dp"
-                android:text="11.06.2003"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/montserrat"
+                android:text="11.06.2003"
                 android:textColor="#930909"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/plant_period_txt"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.319" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginBottom="10dp"
-                android:text="Последняя"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat"
-                app:layout_constraintBottom_toTopOf="@+id/plant_lastday_txt"
+                android:text="Последняя"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,10 +86,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
-                android:layout_marginBottom="10dp"
-                android:text="Период"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat"
-                app:layout_constraintBottom_toTopOf="@+id/plant_period_txt"
+                android:text="Период"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,11 +97,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginBottom="10dp"
-                android:text="Следующая"
                 android:fontFamily="@font/montserrat"
-                app:layout_constraintBottom_toTopOf="@+id/plant_nextday_txt"
+                android:text="Следующая"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="parent" />
