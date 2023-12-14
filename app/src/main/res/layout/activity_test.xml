@@ -92,11 +92,12 @@
             android:id="@+id/questionTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/green"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_bold_italic"
-            android:textSize="20dp"
             android:gravity="center"
             android:text="2	Какая температура поддерживается в помещении, где будут находиться растения?"
+            android:textColor="@color/green"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +107,7 @@
             android:id="@+id/question2RadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -116,53 +118,51 @@
                 android:id="@+id/var1Button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Высокая (более 25°C)"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
             <RadioButton
                 android:id="@+id/var2Button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Умеренная (18-25°C)"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
             <RadioButton
                 android:id="@+id/var3Button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Низкая (менее 18°C)"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/questionTextView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:textColor="@color/green"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_bold_italic"
-            android:textSize="20dp"
             android:gravity="center"
+            android:minHeight="48dp"
             android:onClick="onRadioButtonClicked"
             android:text="3	Как часто вы готовы поливать растения?"
+            android:textColor="@color/green"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.277"
             app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +172,7 @@
             android:id="@+id/question3RadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -182,53 +183,49 @@
                 android:id="@+id/var1Button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Каждый день"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
             <RadioButton
                 android:id="@+id/var2Button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Несколько раз в неделю"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
             <RadioButton
                 android:id="@+id/var3Button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Раз в неделю"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
             <RadioButton
                 android:id="@+id/var4Button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
                 android:minHeight="48dp"
                 android:text="Редко, по необходимости"
-                android:fontFamily="@font/montserrat"
                 android:textColor="#2B3C2C"
                 android:textSize="20dp"
                 tools:layout_editor_absoluteX="175dp"
-                tools:layout_editor_absoluteY="136dp"
-                />
+                tools:layout_editor_absoluteY="136dp" />
 
         </RadioGroup>
 
@@ -236,12 +233,13 @@
             android:id="@+id/ResultButton"
             android:layout_width="145dp"
             android:layout_height="49dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Результат"
+            android:backgroundTint="@color/lightgreen"
             android:fontFamily="@font/montserrat"
+            android:text="Результат"
             android:textColor="@color/notwhite"
             android:textSize="20dp"
-            android:backgroundTint="@color/lightgreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
