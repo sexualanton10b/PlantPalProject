@@ -96,8 +96,7 @@ Button add_button;
         builder.create().show();
     }
     public boolean Check(String name, String day, String per){
-        if (name.length()==0)
-        return false;
+        if (name.length()==0){return false;}
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         try {
             // Пытаемся распарсить строку в дату
