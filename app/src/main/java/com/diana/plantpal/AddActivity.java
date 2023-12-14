@@ -1,5 +1,6 @@
 package com.diana.plantpal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -7,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -18,14 +20,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.Manifest;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddActivity extends AppCompatActivity {
 EditText title_input, lastday_input, period_input;
+String title, lastday, period;
 int row;
 Button add_button;
     @Override
@@ -39,38 +46,73 @@ Button add_button;
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyDataBaseHelper myDB=new MyDataBaseHelper(AddActivity.this);
-                myDB.addPlant(title_input.getText().toString().trim(),
-                        lastday_input.getText().toString().trim(),
-                        Integer.valueOf(period_input.getText().toString().trim()));
-                row= myDB.getLastInsertedRowId();
-                LocalDate LastDay=date(lastday_input.getText().toString().trim());
-                LastDay = LastDay.plusDays(Integer.parseInt(period_input.getText().toString().trim()));
-                Calendar alarmTime = convertToLocalDateTime(LastDay);
-                AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                AlarmManager.AlarmClockInfo alarmClockInfo=new AlarmManager.AlarmClockInfo( alarmTime.getTimeInMillis(), getAlarmInfoPendingIntent());
-                if (Build.VERSION.SDK_INT >= 31) {
-                    if (!alarmManager.canScheduleExactAlarms()) {
-                        // Если разрешение не предоставлено, запросите его у пользователя
-                        new Intent(
-                                Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
-                                Uri.parse("package:" + getPackageName())
-                        );
-                    } else {
-                        // Разрешение уже предоставлено, можно использовать AlarmManager
-                        alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(), getAlarmActionPendingIntent());
-                    }
-                } else {
-                    // Версия SDK меньше 23, разрешение SET_ALARM не требуется
-                    String testTime = String.valueOf(alarmTime.getTimeInMillis());
-                    Log.d("test",testTime);
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(), getAlarmActionPendingIntent());
-                }
-
+                title=title_input.getText().toString().trim();
+                lastday=lastday_input.getText().toString().trim();
+                period=period_input.getText().toString().trim();
+               if (Check(title, lastday, period)){
+                   MyDataBaseHelper myDB=new MyDataBaseHelper(AddActivity.this);
+                   myDB.addPlant(title, lastday, Integer.valueOf(period));
+                   row= myDB.getLastInsertedRowId();
+                   LocalDate LastDay=date(lastday_input.getText().toString().trim());
+                   LastDay = LastDay.plusDays(Integer.parseInt(period_input.getText().toString().trim()));
+                   Calendar alarmTime = convertToLocalDateTime(LastDay);
+                   AlarmManager alarmManager=(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                   AlarmManager.AlarmClockInfo alarmClockInfo=new AlarmManager.AlarmClockInfo( alarmTime.getTimeInMillis(), getAlarmInfoPendingIntent());
+                   if (Build.VERSION.SDK_INT >= 31) {
+                       if (!alarmManager.canScheduleExactAlarms()) {
+                           // Если разрешение не предоставлено, запросите его у пользователя
+                           new Intent(
+                                   Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+                                   Uri.parse("package:" + getPackageName())
+                           );
+                       } else {
+                           // Разрешение уже предоставлено, можно использовать AlarmManager
+                           alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(), getAlarmActionPendingIntent());
+                       }
+                   } else {
+                       // Версия SDK меньше 23, разрешение SET_ALARM не требуется
+                       String testTime = String.valueOf(alarmTime.getTimeInMillis());
+                       Log.d("test",testTime);
+                       alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarmTime.getTimeInMillis(), getAlarmActionPendingIntent());
+                   }
+               }
+               else {
+                   checkDialog();
+               }
             }
+
         });
     }
-
+    void checkDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Ошибка в вводе");
+        builder.setMessage("Проверьте введенные данные");
+        builder.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+    public boolean Check(String name, String day, String per){
+        if (name.length()==0)
+        return false;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        try {
+            // Пытаемся распарсить строку в дату
+            LocalDate parsedDate = LocalDate.parse(day, formatter);
+        } catch (java.time.format.DateTimeParseException e) {
+            // Если произошла ошибка парсинга, строка не является датой в заданном формате
+            return false;
+        }
+        try {
+            int number = Integer.parseInt(per);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
     public static LocalDate date(String day){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         return LocalDate.parse(day, formatter);

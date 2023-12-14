@@ -48,13 +48,17 @@ public class UdpateActivity extends AppCompatActivity {
         change_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDataBaseHelper myDB=new MyDataBaseHelper(UdpateActivity.this);
                 name=title_input.getText().toString().trim();
                 lastday=lastday_input.getText().toString().trim();
                 period=period_input.getText().toString().trim();
-                // И только потом мы вызываем это
-                myDB.updateData(id, name, lastday, Integer.valueOf(period));
-                modifyNotification();
+                if (Check(name, lastday, period)){
+                    MyDataBaseHelper myDB=new MyDataBaseHelper(UdpateActivity.this);
+                    myDB.updateData(id, name, lastday, Integer.valueOf(period));
+                    modifyNotification();
+                }
+                else {
+                    checkDialog();
+                }
             }
         });
         update_button.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +81,36 @@ public class UdpateActivity extends AppCompatActivity {
         });
 
 
+    }
+    void checkDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Ошибка в вводе");
+        builder.setMessage("Проверьте введенные данные");
+        builder.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+    public boolean Check(String name, String day, String per){
+        if (name.length()==0)
+            return false;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        try {
+            // Пытаемся распарсить строку в дату
+            LocalDate parsedDate = LocalDate.parse(day, formatter);
+        } catch (java.time.format.DateTimeParseException e) {
+            // Если произошла ошибка парсинга, строка не является датой в заданном формате
+            return false;
+        }
+        try {
+            int number = Integer.parseInt(per);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
     void modifyNotification(){
         LocalDate LastDay=date(lastday);
