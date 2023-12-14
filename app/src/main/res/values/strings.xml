@@ -4,4 +4,5 @@
     <string name="text_button">Рассчитать</string>
     <string name="add">Добавить</string>
     <string name="list">Список растений</string>
+    <string name="title_activity_custom_list_view">CustomListView</string>
 </resources>
