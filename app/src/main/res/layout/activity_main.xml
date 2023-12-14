@@ -35,14 +35,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="@string/list"
         android:focusable="true"
         app:backgroundTint="@color/lightgreen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/baseline_search_24"
+        app:tintMode="@color/green" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:contentDescription="Тест новичкам"
+        android:focusable="true"
+        app:backgroundTint="@color/lightgreen"
+        app:layout_constraintBottom_toTopOf="@+id/list_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_question_mark_24"
         app:tintMode="@color/green" />
 
     <ImageView

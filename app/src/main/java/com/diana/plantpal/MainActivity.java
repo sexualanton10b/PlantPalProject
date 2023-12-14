@@ -38,7 +38,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
 RecyclerView recyclerView;
-FloatingActionButton add_button, list_button;
+FloatingActionButton add_button, list_button, test_button;
 MyDataBaseHelper myDB;
 ArrayList<String> plant_id, plant_name, plant_lastday, plant_period, plant_nextday;
 ImageView empty_imageview;
@@ -51,6 +51,7 @@ CustomAdapter customAdapter;
         recyclerView=findViewById(R.id.recyclerView);
         add_button=findViewById(R.id.add_button);
         list_button=findViewById(R.id.list_button);
+        test_button=findViewById(R.id.test_button);
         no_data=findViewById(R.id.no_data);
         empty_imageview=findViewById(R.id.empty_igmageview);
         add_button.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +59,13 @@ CustomAdapter customAdapter;
             public void onClick(View v) {
 Intent intent = new Intent(MainActivity.this, AddActivity.class);
 startActivity(intent);
+            }
+        });
+        test_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                startActivity(intent);
             }
         });
         list_button.setOnClickListener(new View.OnClickListener() {
